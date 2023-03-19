@@ -1,0 +1,134 @@
+#include<stdio.h>
+#include<conio.h>
+#define N 5
+
+int front=-1; int rear=-1;
+int queue_array[N];
+
+void enqueue( int x);
+void dequeue();
+void display();
+void peek();
+
+int main(){
+    
+    int ch;
+    do{
+        printf("Enterr choice:\n");
+        printf("1.Enqueue:\n");
+        printf("2.Dequeue:\n");
+        printf("3.Display:\n");
+        printf("4.Peek:\n");
+        printf("5.Exit\n");
+        scanf("%d", &ch);
+        switch(ch){
+            case 1:
+            {
+                int x;
+                printf("Enter element to add:");
+                scanf("%d", &x);
+                enqueue(x);
+                break;
+            }
+            case 2:
+            {
+                dequeue();
+                break;
+            }
+            case 3:
+            {
+                display();
+                break;
+            }
+            case 4:
+            {
+                peek();
+                break;
+            }
+            case 5:
+            {
+                printf(" ");
+                break;
+            }
+            default:
+            {
+                printf("Invalid choice");
+                break;
+            }
+        }
+        
+    }
+    while(ch!=5);
+    printf("\n");
+    return 0;
+}
+
+void enqueue(int x)
+{
+    if((front==0 && rear==N-1))
+    {
+        printf("Overflow");
+    }
+    else
+    {
+        if(front==rear==-1)
+        {
+            front=0;
+            rear=0;
+            queue_array[rear]=x;
+        }
+        
+        else
+        {
+            rear++;
+            queue_array[rear]=x;
+        }
+        
+    }
+}
+
+void dequeue()
+{
+    if((front==-1||rear==-1))
+    {
+        printf("Underflow");
+    }
+    else if(front==rear)
+    {
+        printf("\n%d is dequeued", queue_array[front]);
+        front=rear=-1;
+    }
+    else
+    {
+        printf("\n%d is dequeued", queue_array[front]);
+        front++;
+    }
+}
+
+void display()
+{   int i;
+    if(front==rear==-1)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        for(int i=front;i<rear+1;i++)
+        {
+            printf("%d", queue_array[i]);
+        }
+    }
+}
+
+void peek()
+{
+    if(front==rear==-1)
+    {
+        printf("Queue is empty");
+    }
+    else
+    {
+        printf("%d the data at front is:", queue_array[front]);
+    }
+}
+
